@@ -1,0 +1,2 @@
+# headImageCliper
+javascript头像裁剪组件，利用flash在本地进行裁剪后再上传，支持预览头像
