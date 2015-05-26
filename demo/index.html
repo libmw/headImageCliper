@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <title>flash头像裁切上传</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style type="text/css" media="screen">
+            html, body  { height:100%; }
+            body { margin:0; padding:0; overflow:auto; text-align:center; 
+                   background-color: #fff; }   
+            object:focus { outline:none; }
+        </style>
+    </head>
+
+    <body>
+
+        <button onclick="imageCliper.submit();">上传</button>
+
+        <div id="headImage" style="width:730px;height:730px;margin-left: 10px;">
+
+        </div>
+
+		<script src="headImageCliper.js"></script>
+        <script>
+            window.onload = function(){
+
+                var container = document.getElementById('headImage');
+                window.imageCliper = new HeadImageCliper({
+                    container: container,
+                    flashUrl: '../bin-debug/headImageCliper.swf',
+                    width: container.clientWidth,
+                    height: container.clientHeight,
+                    uploadUrl: 'upload.php',
+                    isPreview: true,
+                    previewSize: '180|100|50',
+                    resourceUrl: 'http://127.0.0.1/headImageCliper/demo/'
+                });
+
+                imageCliper.bind("complete",function(evt, response){
+                    console.log('jsjsjsjsjsjsjsjsjsjsjsjsjsjsjs**********complete', response);
+                });
+
+                imageCliper.bind("error",function(evt, response){
+                    console.log('jsjsjsjsjsjsjsjsjsjsjsjsjsjsjs**********error', response);
+                });
+
+                //imageCliper.setImageSrc('http://127.0.0.1/imageCliper/demo/img_1432626207571.jpg'); 设置默认图片地址
+
+            }
+        </script>
+   </body>
+</html>
