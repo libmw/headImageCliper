@@ -12,6 +12,7 @@ function HeadImageCliper(options){
     this._width = options.width || 200;
     this._height = options.height || 50;
     this._uploadUrl = options.uploadUrl || '';
+    this._file = options.file || 'file';
     this._isPreview = typeof options.isPreview == 'undefined' ? true : options.isPreview;
     this._previewSize = options.previewSize || '200|80|48';
     this._resourceUrl = options.resourceUrl || '';
@@ -91,7 +92,7 @@ HeadImageCliper.prototype._init = function(){
 };
 
 HeadImageCliper.prototype._initFlashvars = function(){
-    this._flashVars = 'uploadUrl='+encodeURIComponent(this._uploadUrl) + '&isPreview=' + this._isPreview + '&previewSize=' + this._previewSize + '&resourceUrl=' + this._resourceUrl;
+    this._flashVars = 'uploadUrl='+encodeURIComponent(this._uploadUrl) + '&file=' + this._file + '&isPreview=' + this._isPreview + '&previewSize=' + this._previewSize + '&resourceUrl=' + this._resourceUrl;
 };
 
 HeadImageCliper.prototype._initUI = function(){

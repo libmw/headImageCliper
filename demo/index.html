@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>flash头像裁切上传</title>
+        <title>flash头像裁剪上传</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <style type="text/css" media="screen">
             html, body  { height:100%; }
@@ -25,17 +25,19 @@
 
                 var container = document.getElementById('headImage');
                 window.imageCliper = new HeadImageCliper({
-                    container: container,
-                    flashUrl: '../bin-debug/headImageCliper.swf',
-                    width: container.clientWidth,
-                    height: container.clientHeight,
-                    uploadUrl: 'upload.php',
-                    isPreview: true,
-                    previewSize: '180|100|50',
-                    resourceUrl: 'http://127.0.0.1/headImageCliper/demo/'
+                    container: container, //上传界面的容器，原生dom
+                    flashUrl: '../bin-debug/headImageCliper.swf?v=0527', //上传flash的地址
+                    width: container.clientWidth, //flash的宽度
+                    height: container.clientHeight, //flash的高度
+                    uploadUrl: 'upload.php', //上传路径
+                    file: 'file', //上传的字段名，默认为file
+                    isPreview: true, //是否显示预览图
+                    previewSize: '180|100|50', //预览图尺寸。'200|100'代表显示200*200和100*100的预览图。注意预览图的尺寸如果过大，可能会超出flash的可视范围，此时应该设置不显示预览图或者增大flash的宽高度
+                    resourceUrl: 'http://127.0.0.1/headImageCliper/demo/' //flash包含的按钮、光标等静态文件的放置路径
                 });
 
                 imageCliper.bind("complete",function(evt, response){
+                    alert('上传成功，请查看console');
                     console.log('jsjsjsjsjsjsjsjsjsjsjsjsjsjsjs**********complete', response);
                 });
 

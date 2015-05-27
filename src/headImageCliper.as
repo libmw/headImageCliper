@@ -129,6 +129,9 @@ package
 			//上传地址
 			_options["uploadUrl"] = _options["uploadUrl"] || "index.php";
 			
+			//上传文件的字段名
+			_options["file"] = _options["file"] || "file";
+			
 			//是否有预览图
 			_options["isPreview"] = _options["isPreview"] == 'false' ? false : true;
 			
@@ -508,7 +511,7 @@ package
 			
 			StaticLib.console('log', variables);
 			
-			urlRequest.data = UploadPostHelper.getPostData(_getFileName() + '.jpg', _uploadData, "file", variables);
+			urlRequest.data = UploadPostHelper.getPostData(_getFileName() + '.jpg', _uploadData, _options["file"], variables);
 			urlRequest.requestHeaders.push(new URLRequestHeader('Cache-Control', 'no-cache'));
 			urlRequest.requestHeaders.push(new URLRequestHeader('Content-Type', 'multipart/form-data; boundary=' + UploadPostHelper.getBoundary()));
 			
