@@ -4,7 +4,7 @@ javascript头像裁剪上传组件，利用flash在本地进行裁剪后再上�
 
 ## 使用方法
 
-```
+```javascript
 window.imageCliper = new HeadImageCliper({
     container: container, //上传界面的容器，原生dom
     flashUrl: '../bin-debug/headImageCliper.swf?v=0527', //上传flash的地址,加上版本号，防止flash被缓存
