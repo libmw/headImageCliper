@@ -16,6 +16,7 @@ package
 	import flash.external.ExternalInterface;
 	import flash.geom.Matrix;
 	import flash.geom.Rectangle;
+	import flash.net.*;
 	import flash.net.FileFilter;
 	import flash.net.FileReference;
 	import flash.net.URLLoader;
@@ -47,8 +48,12 @@ package
 	import libs.Preview;
 	import flash.display.MovieClip;
 	
-	public class headImageCliper extends Sprite 
-	{ 
+	import flash.ui.ContextMenu;
+	import flash.ui.ContextMenuItem;
+	import flash.events.ContextMenuEvent;
+	
+	public class HeadImageCliper extends Sprite 
+	{    
 		private var _image:Bitmap = new Bitmap(); //裁剪的图片
 		private var _bitmapData:BitmapData;
 		private var _uploadData:ByteArray; //用于上传的bytearray
@@ -69,7 +74,7 @@ package
 		private var _fileReference:FileReference = new FileReference(); //图片选择框
 		
 		
-		public function headImageCliper(){ 
+		public function HeadImageCliper(){ 
 			this.addEventListener(Event.ENTER_FRAME, checkLoaded);
 		}
 		
@@ -114,7 +119,23 @@ package
 			_buildUI();
 			_bindEvents();
 			
+			var menu:ContextMenu = new ContextMenu();
+			var menuItem:ContextMenuItem = new ContextMenuItem("headImageCliper V1.0");
+			// 隐藏内建菜单
+			menu.hideBuiltInItems()
+			//设置右键菜单为自定义菜单
+			this.contextMenu = menu;
+			// 在菜单数组中添加一个选项；
+			menu.customItems.push(menuItem);
+			// 给菜单选项添加事件；
+			// 给菜单选项添加事件；
+			menuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT,menuItem_click);
+			function menuItem_click(event:ContextMenuEvent):void{
+				navigateToURL(new URLRequest("https://github.com/libmw/headImageCliper"))
+			}
 		}
+		
+		
 		
 		/**
 		 * 获取页面传递过来的参数
