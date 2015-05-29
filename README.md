@@ -1,8 +1,17 @@
 # headImageCliper
-javascript头像裁剪上传组件，利用flash在本地进行裁剪后再上传，支持按尺寸预览头像。[查看demo](http://libmw.github.io/2015/05/27/head-image-cliper.html)
+javascript头像裁剪上传组件，利用flash在本地进行裁剪后再上传，支持按尺寸预览头像，支持png、jpg、bmp、gif图片上传。
 
+项目使用flashbuilder开发，可以用flashbuilder直接打开此项目。
+
+![demo](http://libmw.github.io/resource/2015/headimagecliper/demo.png)
 
 ## 使用方法
+
+1.把/bin-debug/headImageCliper.swf放到你的网站目录
+
+2./demo文件夹下的所有图片和js放到你的网站目录。图片是swf文件需要使用的按钮、光标等，headImageCliper.js是与flash交互的组件HeadImageCliper。
+
+3.使用如下代码调用裁剪组件：
 
 ```javascript
 window.imageCliper = new HeadImageCliper({
@@ -17,4 +26,9 @@ window.imageCliper = new HeadImageCliper({
     resourceUrl: 'http://127.0.0.1/headImageCliper/demo/' //flash包含的按钮、光标等静态文件的放置路径
 });
 ```
+
+完整示例请[查看demo](http://libmw.github.io/2015/05/27/head-image-cliper.html)
+
+有任何问题，mailto：libmw@163.com
+
 
