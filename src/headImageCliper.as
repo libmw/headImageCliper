@@ -464,7 +464,11 @@ package
 		}
 		
 		public function submit():void{
-			_jpgEncode(_getUploadData());
+			if(_bitmapData){
+				_jpgEncode(_getUploadData());
+			}else{
+				_error('请选择头像图片');
+			}
 			
 		}
 		

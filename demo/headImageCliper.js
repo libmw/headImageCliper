@@ -6,6 +6,7 @@
  * options.isPreview [Boolean] 是否显示预览图
  * options.previewSize [String] 显示哪些尺寸的预览图。'200|100'代表显示200*200和100*100的预览图。注意预览图的尺寸如果过大，可能会超出flash的可视范围，此时应该设置不显示预览图或者增大flash的宽高度
  * options.flashUrl [String] swf文件的完整地址
+ * options.resourceUrl [String] flash包含的按钮、光标等静态文件的放置路径
  * */
 function HeadImageCliper(options){
     this._container = options.container;
@@ -76,11 +77,11 @@ HeadImageCliper.prototype.unbind = function(evt, func){
 /**
  * 触发事件
  * */
-HeadImageCliper.prototype.trigger = function(evt){
+HeadImageCliper.prototype.trigger = function(evt, data){
     if(this._events[evt]){
         var events = this._events[evt];
         for(var i = 0; i < events.length; i ++){
-            events[i].call(this);
+            events[i].call(this, evt, data);
         }
     }
 };
@@ -97,7 +98,6 @@ HeadImageCliper.prototype._initFlashvars = function(){
 
 HeadImageCliper.prototype._initUI = function(){
     var id = 'flashUploader' + this._token;
-    //var url = './FixedSizeCliper.swf?v=' + (+new Date());
     var url = this._flashUrl;
     var ie = '<object id="'+ id +'" onfocus="return false;"  name="#" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="'+ this._width +'" height="'+ this._height +'"><param name="allowScriptAccess" value="always" /><param value="transparent" name="wmode"><param name="flashvars" value="'+ this._flashVars +'" /><param name=play value=false> <param name="allowFullScreen" value="false" /><param name="movie" value="'+ url +'" /></object>',
         w3c = '<object id="'+ id +'" type="application/x-shockwave-flash" data="'+ url +'" width="'+ this._width +'" height="'+ this._height +'"><param name="allowScriptAccess" value="always" /><param value="transparent" name="wmode"><param name="flashvars" value="'+ this._flashVars +'" /></object>';
