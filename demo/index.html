@@ -26,14 +26,15 @@
                 var container = document.getElementById('headImage');
                 window.imageCliper = new HeadImageCliper({
                     container: container, //上传界面的容器，原生dom
-                    flashUrl: '../bin-debug/headImageCliper.swf?v=0527', //上传flash的地址
+                    flashUrl: 'http://www.lmj.com/headImageCliper/bin-debug/headImageCliper.swf?v=0728', //上传flash的地址
                     width: container.clientWidth, //flash的宽度
                     height: container.clientHeight, //flash的高度
-                    uploadUrl: 'upload.php', //上传路径
+                    uploadUrl: 'http://www.lmj.com/headImageCliper/demo/upload.php', //上传路径
                     file: 'file', //上传的字段名，默认为file
                     isPreview: true, //是否显示预览图
                     previewSize: '180|100|50', //预览图尺寸。'200|100'代表显示200*200和100*100的预览图。注意预览图的尺寸如果过大，可能会超出flash的可视范围，此时应该设置不显示预览图或者增大flash的宽高度
-                    resourceUrl: 'http://127.0.0.1/headImageCliper/demo/' //flash包含的按钮、光标等静态文件的放置路径
+                    defaultPreview: 'http://www.fileupload.com/v1/upload/attache?api_key=user-center&file=0778264d61eb1bc14950667b05fe5a79&time=2015-06-17',
+                    resourceUrl: 'http://www.lmj.com/headImageCliper/demo/' //flash包含的按钮、光标等静态文件的放置路径
                 });
 
                 imageCliper.bind("complete",function(evt, response){

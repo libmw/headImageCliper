@@ -153,15 +153,20 @@ package
 			//上传文件的字段名
 			_options["file"] = _options["file"] || "file";
 			
+			var selfUrl:String = this.stage.loaderInfo.url; 
+			//静态资源的地址，按钮图片，缩放光标图片等
+			_options["resourceUrl"] = _options["resourceUrl"] || selfUrl.substring(0, selfUrl.lastIndexOf("/"));
+			
 			//是否有预览图
 			_options["isPreview"] = _options["isPreview"] == 'false' ? false : true;
 			
 			//预览图尺寸
 			_options["previewSize"] = _options["previewSize"] || '200|80|48';
 			
-			var selfUrl:String = this.stage.loaderInfo.url; 
-			//静态资源的地址，按钮图片，缩放光标图片等
-			_options["resourceUrl"] = _options["resourceUrl"] || selfUrl.substring(0, selfUrl.lastIndexOf("/"));
+			//默认预览图
+			_options["defaultPreview"] = _options["defaultPreview"] || StaticLib.config.urlPath + '/default-200.jpg';
+			
+			
 			
 			//裁剪图的最大尺寸
 			_options["maxSize"] = parseInt(_options["previewSize"].split('|')[0]);
@@ -247,7 +252,7 @@ package
 			StaticLib.console('log', 'preview: ' + _options['isPreview']);
 			
 			//预览图
-			_preview = new Preview(this, _options["previewSize"].split('|'));				
+			_preview = new Preview(this, _options["previewSize"].split('|'), _options["defaultPreview"]);				
 			
 			
 			StaticLib.console('console.log', this.width);

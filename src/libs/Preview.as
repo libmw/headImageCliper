@@ -2,16 +2,16 @@ package libs
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.Loader;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.geom.Matrix;
+	import flash.net.URLRequest;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFormat;
 	
 	import baidu.local.StaticLib;
-	import flash.text.TextFormat;
-	import flash.display.Loader;
-	import flash.net.URLRequest;
-	import flash.events.Event;
 	
 	/**
 	 * 头像预览类
@@ -32,7 +32,7 @@ package libs
 		
 		private var _currentTop:int; //当前布局的top值
 		
-		public function Preview(parent:Sprite, imageSizeList:Array){
+		public function Preview(parent:Sprite, imageSizeList:Array, defaultPreview:String){
 			_parent = parent;
 			
 			_previewWidth = StaticLib.config.previewWidth;
@@ -46,7 +46,7 @@ package libs
 			_currentTop = StaticLib.config.previewPaddingTop;
 			
 			sizeList = imageSizeList;
-			_buildUI(imageSizeList);
+			_buildUI(imageSizeList, defaultPreview);
 			
 			this.x = _previewX;
 			this.y = _previewY;
@@ -63,7 +63,7 @@ package libs
 		/**
 		 * 创建各个尺寸的预览图片
 		 * */
-		private function _buildUI(sizeList : Array):void{
+		private function _buildUI(sizeList : Array, defaultPreview:String):void{
 			for(var i:int = 0; i < sizeList.length; i++){
 				_buildPreview(sizeList[i]);
 			}
@@ -71,7 +71,7 @@ package libs
 			
 			//_buildPreview(100);
 			var loader:Loader = new Loader();
-			var myURL:URLRequest = new URLRequest(StaticLib.config.urlPath + '/default-200.jpg?new');//取出图片文件名
+			var myURL:URLRequest = new URLRequest(defaultPreview);//取出图片文件名
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, _imageLoaded);
 			loader.load(myURL);//载入图片
 			

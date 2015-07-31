@@ -5,6 +5,7 @@
  * options.file [String] 上传的字段名，默认为file
  * options.isPreview [Boolean] 是否显示预览图
  * options.previewSize [String] 显示哪些尺寸的预览图。'200|100'代表显示200*200和100*100的预览图。注意预览图的尺寸如果过大，可能会超出flash的可视范围，此时应该设置不显示预览图或者增大flash的宽高度
+ * options.defaultPreview [String] 默认显示的预览图。如果预览图跨域，则需设置crossdomain.xml
  * options.flashUrl [String] swf文件的完整地址
  * options.resourceUrl [String] flash包含的按钮、光标等静态文件的放置路径
  * */
@@ -16,6 +17,7 @@ function HeadImageCliper(options){
     this._file = options.file || 'file';
     this._isPreview = typeof options.isPreview == 'undefined' ? true : options.isPreview;
     this._previewSize = options.previewSize || '200|80|48';
+    this._defaultPreview = options.defaultPreview || '';
     this._resourceUrl = options.resourceUrl || '';
     this._flashUrl = options.flashUrl;
     this._token = (new Date).getTime();
@@ -93,7 +95,7 @@ HeadImageCliper.prototype._init = function(){
 };
 
 HeadImageCliper.prototype._initFlashvars = function(){
-    this._flashVars = 'uploadUrl='+encodeURIComponent(this._uploadUrl) + '&file=' + this._file + '&isPreview=' + this._isPreview + '&previewSize=' + this._previewSize + '&resourceUrl=' + this._resourceUrl;
+    this._flashVars = 'uploadUrl='+encodeURIComponent(this._uploadUrl) + '&file=' + this._file + '&isPreview=' + this._isPreview + '&previewSize=' + this._previewSize + '&defaultPreview=' + encodeURIComponent(this._defaultPreview) + '&resourceUrl=' + this._resourceUrl;
 };
 
 HeadImageCliper.prototype._initUI = function(){

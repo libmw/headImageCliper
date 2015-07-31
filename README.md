@@ -1,4 +1,8 @@
 # headImageCliper
+
+`本组件已停止更新，请使用功能更丰富的组件`[imageCliper](https://github.com/libmw/imageCliper)
+
+
 javascript头像裁剪上传组件，利用flash在本地进行裁剪后再上传，支持按尺寸预览头像，支持png、jpg、bmp、gif图片上传。
 
 项目使用flashbuilder开发，可以用flashbuilder直接打开此项目。
